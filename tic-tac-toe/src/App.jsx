@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Square({ value, onSquareClick }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square p-2 fw-bold fs-1" onClick={onSquareClick}>
       {value}
     </button>
   );
@@ -26,9 +26,9 @@ function Board({ xIsNext, squares, onPlay }) {
 
   return (
     <>
-      <h1 id="title">Tic Tac Toe</h1>
+      <h1 id="title text-center">Tic Tac Toe</h1>
 
-      <div className="board">
+      <div className="board row row-cols-3">
         <Square value={squares[0]} onSquareClick={() => handleSquareClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleSquareClick(1)} />
         <Square value={squares[2]} onSquareClick={() => handleSquareClick(2)} />
@@ -40,7 +40,7 @@ function Board({ xIsNext, squares, onPlay }) {
         <Square value={squares[8]} onSquareClick={() => handleSquareClick(8)} />
       </div>
 
-      <div className="status">{status}</div>
+      <div className="status text-center fs-3">{status}</div>
     </>
   );
 }
@@ -72,17 +72,19 @@ export default function Game() {
 
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        <button className="btn btn-secondary my-1" onClick={() => jumpTo(move)}>
+          {description}
+        </button>
       </li>
     );
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
+    <div className="game container mt-5 d-flex justify-content-center">
+      <div className="game-board container col-5">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className="game-info">
+      <div className="game-info col-5">
         <ol>{moves}</ol>
       </div>
     </div>
